@@ -1,0 +1,6 @@
+:link-cloud-events: https://cloudevents.io/[CloudEvents]
+:link-cncf: https://cncf.io[CNCF]
+:link-command-operators: https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators[Command Operators]
+:link-envoy-access-logs: https://istio.io/latest/docs/tasks/observability/logs/access-log/[Envoy Access Logs]
+:link-mesh-config: https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/#MeshConfig[MeshConfig]
+:link-otel-collector: https://opentelemetry.io/docs/collector/[OpenTelemetry otel collector]

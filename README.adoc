@@ -1,24 +1,22 @@
 = Istio Access Logging
-Peter Zandbergen <peter.zandbergen@myhops.com>
-:link-envoy-access-logs: https://istio.io/latest/docs/tasks/observability/logs/access-log/[Envoy Access Logs]
-:link-mesh-config: https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/#MeshConfig[MeshConfig]
-:link-command-operators: https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators[Command Operators]
-
-
+include::docs/include/doc-prelude.adoc[]
+include::docs/include/links.adoc[]
 
 This document captures the learnings of the experiments and study of the access logging of Istio.
 The aim is to generate audit logs for services that the proxy protects, and to send the log entries to an arbitrary backbone.
 
-We will first look at the general access log and have the entries formatted according to the https://cloudevents.io/[CloudEvents] spec. 
-The idea is that this will ease processing the events, for CloudEvents are a https://cncf.io[CNCF] standard with increasing support. 
+We will first look at the general access log and have the entries formatted according to the {link-cloud-events} spec. 
+The idea is that this will ease processing the events, for CloudEvents are a {link-cncf} standard with increasing support. 
 
-The next step will be to send the logging to an https://opentelemetry.io/docs/collector/[OpenTelemetry otel collector].
+The next step will be to send the logging to an {link-otel-collector}  .
 Istio supports this, but it remains to be seen if we will be able to send the desired data via this channel.
 
 == Istio Operator
 
 The standard way to configure Istio is via a profile. 
 This is a yaml file that configures the different Istio components.
+
+link:docs/install.adoc[Installation]
 
 == Access Logging Configuration
 
@@ -32,11 +30,7 @@ We will use the JSON accessLogEncoding for structured logs, and set accessLogFil
 The accessLogFormat value is a template that we can fill with so called {link-command-operators}.
 
 
-== Access Log Format and Telemetry
-
-The Telemetry API is part of the {link-envoy-access-logs} functionality. 
-It is a resources that allows us to fine tune the telemetry on a cluster, namespace and workload level. 
-This gives us the means to filter out fields that are not necessary for e.g. the audit log.
+== Access Log Format
 
 And example access log format in json is
 
@@ -76,3 +70,9 @@ This produces log entries (formatted for better readability).
   "path": "/anything"
 }
 ----
+
+== Telemetry
+
+The Telemetry API is part of the {link-envoy-access-logs} functionality. 
+It is a resources that allows us to fine tune the telemetry on a cluster, namespace and workload level. 
+This gives us a way to filter out fields that are not necessary for e.g. the audit log.
