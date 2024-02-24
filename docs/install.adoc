@@ -8,7 +8,17 @@ Instructions to install Istio on a Kind cluster with an example application.
 
 == Kind
 
-Kind allows us to install a Kubernetes cluster with 
+Install a cluster with Kind.
+
+First you need to make sure that you have an up to date version of *kind* installed.
+
+Then run
+
+[code,bash]
+----
+kind create cluster 
+----
+
 
 == Istio
 
