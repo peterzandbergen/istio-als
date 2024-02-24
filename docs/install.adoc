@@ -14,7 +14,7 @@ First you need to make sure that you have an up to date version of *kind* instal
 
 Then run
 
-[code,bash]
+[source,bash]
 ----
 kind create cluster 
 ----
