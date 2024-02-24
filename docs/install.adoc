@@ -26,3 +26,13 @@ kind create cluster
 
 == Log Formats
 
+
+
+Test
+
+[source,asciidoc]
+.Delimited code block with title
+....
+include::example$code-blocks.adoc[tag=dl-co]
+....
+
