@@ -1,0 +1,51 @@
+#!/bin/bash
+
+istioctl install --set profile=demo -y
+
+
+# Otel logging with otel collector
+# in samples/open-telemetry/als
+kubectl apply -f ../otel.yaml -n istio-system
+
+
+# Uninstall 
+
+
+
+
+
+cat <<EOF | kubectl apply -n istio-system -f -
+apiVersion: telemetry.istio.io/v1alpha1
+kind: Telemetry
+metadata:
+  name: mesh-default
+  namespace: istio-system
+spec:
+  accessLogging:
+    - providers:
+      - name: otel
+EOF
+
+# Install
+kubectl delete -f ../../httpbin/httpbin.yaml ;
+kubectl delete -f ../../httpbin/sample-client/fortio-deploy.yaml ;
+kubectl apply -f <(istioctl kube-inject -f ../../httpbin/httpbin.yaml) ;
+kubectl apply -f <(istioctl kube-inject -f ../../httpbin/sample-client/fortio-deploy.yaml)
+
+istioctl uninstall --purge -y ; 
+istioctl install --set profile=demo --manifests ./manifests  -y 
+
+
+kubectl exec -it $(kubectl get po | grep fortio | awk '{print $1}') -- fortio curl httpbin:8000/ip
+
+kubectl logs $(kubectl get po -n istio-system | grep opentelemetry | awk '{print $1}') -n istio-system
+
+# Log httpbin logs
+kubectl logs --selector=app=httpbin -c istio-proxy -f
+
+# test
+apk add curl ; 
+curl --header 'x-custom-header: peza' httpbin:8000/ip
+
+# start debugger
+k debug -it -n default  --image=alpine 
