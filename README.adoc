@@ -11,6 +11,10 @@ The idea is that this will ease processing the events, for CloudEvents are a {li
 The next step will be to send the logging to an {link-otel-collector}  .
 Istio supports this, but it remains to be seen if we will be able to send the desired data via this channel.
 
+== Installation
+
+Go to link:docs/install.adoc[installation] for instructions to install and configure Istio Access logging with a custom log format.
+
 == Istio Operator
 
 The standard way to configure Istio is via a profile. 
@@ -76,3 +80,4 @@ This produces log entries (formatted for better readability).
 The Telemetry API is part of the {link-envoy-access-logs} functionality. 
 It is a resources that allows us to fine tune the telemetry on a cluster, namespace and workload level. 
 This gives us a way to filter out fields that are not necessary for e.g. the audit log.
+
