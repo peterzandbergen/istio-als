@@ -38,7 +38,7 @@ The accessLogFormat value is a template that we can fill with so called {link-co
 
 And example access log format in json is
 
-[code,yaml]
+[source,yaml]
 ----
     accessLogFile: /dev/stdout
     accessLogEncoding: JSON
@@ -55,7 +55,7 @@ And example access log format in json is
 
 This produces log entries (formatted for better readability).
 
-[code,json]
+[source,json]
 ----
 {
   "start_time_ns": "1708707433550141000",
