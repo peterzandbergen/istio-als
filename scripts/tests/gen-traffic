@@ -1,0 +1,4 @@
+#!/bin/bash
+
+kubectl exec -it $(kubectl get po | grep fortio | awk '{print $1}') -- fortio curl httpbin:8000/anything?q1=val1
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+WDIR=$(dirname ${BASH_SOURCE[0]})
+MANIFESTS=$WDIR/../../kubernetes/istio/manifests
+FILENAME=$WDIR/../../kubernetes/istio/manifests/profiles/demo.yaml
+
+echo $MANIFESTS
+echo $FILENAME
+# Install isio with istioctl
+istioctl install --manifests $MANIFESTS --set profile=demo

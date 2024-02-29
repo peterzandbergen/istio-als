@@ -32,14 +32,14 @@ spec:
         port: 4317
         service: opentelemetry-collector.otel-collector.svc.cluster.local
   components:
-    egressGateways:
-    - name: istio-egressgateway
-      enabled: true
-      k8s:
-        resources:
-          requests:
-            cpu: 10m
-            memory: 40Mi
+    # egressGateways:
+    # - name: istio-egressgateway
+    #   enabled: true
+    #   k8s:
+    #     resources:
+    #       requests:
+    #         cpu: 10m
+    #         memory: 40Mi
 
     ingressGateways:
     - name: istio-ingressgateway
@@ -93,8 +93,8 @@ spec:
     pilot:
       autoscaleEnabled: false
 
-    gateways:
-      istio-egressgateway:
-        autoscaleEnabled: false
-      istio-ingressgateway:
-        autoscaleEnabled: false
+    # gateways:
+    #   istio-egressgateway:
+    #     autoscaleEnabled: false
+    #   istio-ingressgateway:
+    #     autoscaleEnabled: false

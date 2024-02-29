@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Log httpbin logs
+kubectl logs --selector=app=httpbin -c istio-proxy -f
